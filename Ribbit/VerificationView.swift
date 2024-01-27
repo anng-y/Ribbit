@@ -85,7 +85,6 @@ struct VerificationView: View {
                         // Calls the function for checking if phone number
                         isValidNum = isValidPhoneNumber(value: phoneNumber)
                         if isValidNum {
-                            message = "We've sent your OPT code to \(phoneNumber)"
                             // parse phoneNumber
                             do {
                                 let parsed = try phoneNumberKit.parse("+1" + phoneNumber)
@@ -95,6 +94,7 @@ struct VerificationView: View {
                             catch {
                                 print("Parse error")
                             }
+                            message = "We've sent your OPT code to \(phoneNumber)"
                             Task {
                                 do {
                                     let _ = try await Api.shared.sendVerificationToken(e164PhoneNumber: phoneNumberContainer)

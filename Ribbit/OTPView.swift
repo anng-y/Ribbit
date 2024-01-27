@@ -88,7 +88,6 @@ struct OTPView: View {
                             Task {
                                 do {
                                     let _ = try await Api.shared.sendVerificationToken(e164PhoneNumber: phoneNumber)
-                                    navigateToHome = true
                                 }
                                 catch let apiError as ApiError {
                                     print (apiError.message)
