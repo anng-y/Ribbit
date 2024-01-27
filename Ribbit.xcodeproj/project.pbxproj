@@ -16,8 +16,13 @@
 		0792E3EA2B5B7CA100E97A6D /* RibbitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0792E3E92B5B7CA100E97A6D /* RibbitUITestsLaunchTests.swift */; };
 		0792E3F72B5B7D1500E97A6D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0792E3F62B5B7D1500E97A6D /* LaunchView.swift */; };
 		0792E3FA2B5B7D4D00E97A6D /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0792E3F92B5B7D4D00E97A6D /* PhoneNumberKit */; };
-		0792E3FC2B5B7D9C00E97A6D /* RetroGaming.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0792E3FB2B5B7D9C00E97A6D /* RetroGaming.ttf */; };
 		0792E3FF2B5B7DD500E97A6D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0792E3FE2B5B7DD500E97A6D /* README.md */; };
+		07A59E002B60E1E500C572A4 /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A59DFF2B60E1E500C572A4 /* OTPView.swift */; };
+		07A59E022B60E51A00C572A4 /* RetroGaming.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07A59E012B60E50F00C572A4 /* RetroGaming.ttf */; };
+		07A59E092B6308D500C572A4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A59E082B6308D500C572A4 /* RootView.swift */; };
+		07A59E0B2B630ECA00C572A4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A59E0A2B630ECA00C572A4 /* HomeView.swift */; };
+		07A59E0D2B6310AC00C572A4 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07A59E0C2B6310AC00C572A4 /* Launch Screen.storyboard */; };
+		07A59E0F2B6327CB00C572A4 /* Api (4).swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A59E0E2B6327CA00C572A4 /* Api (4).swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,9 +54,15 @@
 		0792E3E72B5B7CA100E97A6D /* RibbitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitUITests.swift; sourceTree = "<group>"; };
 		0792E3E92B5B7CA100E97A6D /* RibbitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0792E3F62B5B7D1500E97A6D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
-		0792E3FB2B5B7D9C00E97A6D /* RetroGaming.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = RetroGaming.ttf; path = ../../../../../../../../../../Fonts/RetroGaming.ttf; sourceTree = "<group>"; };
 		0792E3FD2B5B7DAC00E97A6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0792E3FE2B5B7DD500E97A6D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		07A59DFF2B60E1E500C572A4 /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
+		07A59E012B60E50F00C572A4 /* RetroGaming.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RetroGaming.ttf; sourceTree = "<group>"; };
+		07A59E032B60EA0200C572A4 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
+		07A59E082B6308D500C572A4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		07A59E0A2B630ECA00C572A4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		07A59E0C2B6310AC00C572A4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		07A59E0E2B6327CA00C572A4 /* Api (4).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Api (4).swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,9 +117,15 @@
 			children = (
 				0792E3FD2B5B7DAC00E97A6D /* Info.plist */,
 				0792E3CC2B5B7C9F00E97A6D /* RibbitApp.swift */,
+				07A59E0C2B6310AC00C572A4 /* Launch Screen.storyboard */,
+				07A59E0A2B630ECA00C572A4 /* HomeView.swift */,
+				07A59E082B6308D500C572A4 /* RootView.swift */,
+				07A59DFF2B60E1E500C572A4 /* OTPView.swift */,
 				0792E3CE2B5B7C9F00E97A6D /* VerificationView.swift */,
+				07A59E0E2B6327CA00C572A4 /* Api (4).swift */,
 				0792E3F62B5B7D1500E97A6D /* LaunchView.swift */,
-				0792E3FB2B5B7D9C00E97A6D /* RetroGaming.ttf */,
+				07A59E032B60EA0200C572A4 /* Empty.md */,
+				07A59E012B60E50F00C572A4 /* RetroGaming.ttf */,
 				0792E3D02B5B7CA100E97A6D /* Assets.xcassets */,
 				0792E3D22B5B7CA100E97A6D /* Preview Content */,
 			);
@@ -250,9 +267,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0792E3FC2B5B7D9C00E97A6D /* RetroGaming.ttf in Resources */,
 				0792E3D42B5B7CA100E97A6D /* Preview Assets.xcassets in Resources */,
 				0792E3FF2B5B7DD500E97A6D /* README.md in Resources */,
+				07A59E022B60E51A00C572A4 /* RetroGaming.ttf in Resources */,
+				07A59E0D2B6310AC00C572A4 /* Launch Screen.storyboard in Resources */,
 				0792E3D12B5B7CA100E97A6D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,8 +297,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0792E3CF2B5B7C9F00E97A6D /* VerificationView.swift in Sources */,
+				07A59E0B2B630ECA00C572A4 /* HomeView.swift in Sources */,
 				0792E3F72B5B7D1500E97A6D /* LaunchView.swift in Sources */,
+				07A59E092B6308D500C572A4 /* RootView.swift in Sources */,
+				07A59E002B60E1E500C572A4 /* OTPView.swift in Sources */,
 				0792E3CD2B5B7C9F00E97A6D /* RibbitApp.swift in Sources */,
+				07A59E0F2B6327CB00C572A4 /* Api (4).swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,15 +463,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ribbit/Preview Content\"";
+				DEVELOPMENT_TEAM = H9PP879423;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ribbit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -459,6 +484,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ucdavis.cs.ecs189e.Ribbit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -470,15 +496,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ribbit/Preview Content\"";
+				DEVELOPMENT_TEAM = H9PP879423;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ribbit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -488,6 +517,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ucdavis.cs.ecs189e.Ribbit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

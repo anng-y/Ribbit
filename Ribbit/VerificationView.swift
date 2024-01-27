@@ -21,7 +21,6 @@ struct VerificationView: View {
     let phoneNumberKit = PhoneNumberKit()
     // Displaying phone number
     @State private var phoneNumber: String = ""
-    // Storing phone number
     @State private var phoneNumberContainer: String = ""
     // CountryCode: default = +1
     @State private var countryCode = "+1"
@@ -31,10 +30,11 @@ struct VerificationView: View {
     @State private var isValidNum = false
     // To print message
     @State private var message = ""
+    // Navigate to OTP Screen
+    @State private var navigateToOTP = false
     
     var body: some View {
         ZStack {
-            
             // Manage tap gesture
             Rectangle()
                 .fill(Color("bgColor"))
@@ -43,10 +43,7 @@ struct VerificationView: View {
                 Spacer()
                 // Title
                 Text("Verify your phone number")
-                    //.font(.largeTitle)
                     .font(Font.custom("RetroGaming", size: 30, relativeTo: .largeTitle))
-                //Text("For verification purposes.")
-                    .font(.subheadline)
                 // Phone number text field
                 HStack() {
                     // Country code button, to be implemented later
@@ -98,7 +95,15 @@ struct VerificationView: View {
                             catch {
                                 print("Parse error")
                             }
-                            
+                            Task {
+                                do {
+                                    let _ = try await Api.shared.sendVerificationToken(e164PhoneNumber: phoneNumberContainer)
+                                    navigateToOTP = true
+                                }
+                                catch let apiError as ApiError {
+                                    print (apiError.message)
+                                }
+                            }
                         } else {
                             // phone number is too short
                             if phoneNumber.count < 14 {
@@ -120,8 +125,12 @@ struct VerificationView: View {
                 }
             }
                 
-        }.onTapGesture {
+        }
+        .onTapGesture {
             isTyping = false
+        }
+        .navigationDestination(isPresented: $navigateToOTP) {
+            OTPView(phoneNumber: $phoneNumberContainer)
         }
     }
 }

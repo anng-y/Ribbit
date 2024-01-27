@@ -12,7 +12,9 @@ import SwiftUI
 struct RibbitApp: App {
     var body: some Scene {
         WindowGroup {
-            LaunchView()
+            NavigationStack {
+                VerificationView()
+            }
         }
     }
 }

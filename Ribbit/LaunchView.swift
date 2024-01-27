@@ -17,7 +17,7 @@ struct LaunchView: View {
     
     var body: some View {
         if isActive {
-            VerificationView()
+            //VerificationView()
         } else {
             VStack {
                 VStack {
