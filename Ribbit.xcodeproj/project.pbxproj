@@ -23,6 +23,9 @@
 		07A59E0B2B630ECA00C572A4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A59E0A2B630ECA00C572A4 /* HomeView.swift */; };
 		07A59E0D2B6310AC00C572A4 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07A59E0C2B6310AC00C572A4 /* Launch Screen.storyboard */; };
 		07A59E0F2B6327CB00C572A4 /* Api (4).swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A59E0E2B6327CA00C572A4 /* Api (4).swift */; };
+		07A59E132B688F7A00C572A4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A59E122B688F7A00C572A4 /* SettingsView.swift */; };
+		07A59E152B6979E300C572A4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A59E142B6979E300C572A4 /* UserModel.swift */; };
+		07A59E192B69A67900C572A4 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A59E182B69A67800C572A4 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		07A59E0A2B630ECA00C572A4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		07A59E0C2B6310AC00C572A4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		07A59E0E2B6327CA00C572A4 /* Api (4).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Api (4).swift"; sourceTree = "<group>"; };
+		07A59E122B688F7A00C572A4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		07A59E142B6979E300C572A4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		07A59E182B69A67800C572A4 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,9 @@
 				07A59E0C2B6310AC00C572A4 /* Launch Screen.storyboard */,
 				07A59E0A2B630ECA00C572A4 /* HomeView.swift */,
 				07A59E082B6308D500C572A4 /* RootView.swift */,
+				07A59E142B6979E300C572A4 /* UserModel.swift */,
+				07A59E182B69A67800C572A4 /* LoadingView.swift */,
+				07A59E122B688F7A00C572A4 /* SettingsView.swift */,
 				07A59DFF2B60E1E500C572A4 /* OTPView.swift */,
 				0792E3CE2B5B7C9F00E97A6D /* VerificationView.swift */,
 				07A59E0E2B6327CA00C572A4 /* Api (4).swift */,
@@ -297,11 +306,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0792E3CF2B5B7C9F00E97A6D /* VerificationView.swift in Sources */,
+				07A59E132B688F7A00C572A4 /* SettingsView.swift in Sources */,
 				07A59E0B2B630ECA00C572A4 /* HomeView.swift in Sources */,
+				07A59E192B69A67900C572A4 /* LoadingView.swift in Sources */,
 				0792E3F72B5B7D1500E97A6D /* LaunchView.swift in Sources */,
 				07A59E092B6308D500C572A4 /* RootView.swift in Sources */,
 				07A59E002B60E1E500C572A4 /* OTPView.swift in Sources */,
 				0792E3CD2B5B7C9F00E97A6D /* RibbitApp.swift in Sources */,
+				07A59E152B6979E300C572A4 /* UserModel.swift in Sources */,
 				07A59E0F2B6327CB00C572A4 /* Api (4).swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

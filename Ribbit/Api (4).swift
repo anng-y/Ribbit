@@ -74,11 +74,12 @@ struct CheckVerificationResponse: Codable {
 
 struct JsonHttp {
     static let shared = JsonHttp()
-    
+    // Http methods
     func put<ResponseType>(url: String, data: Encodable, headers: [String : String]) async throws -> ResponseType where ResponseType : Decodable {
         return try await httpMethod(method: "PUT", url: url, data: data, headers: headers)
     }
-
+    // generic post <>, has to implement decodable
+    // protocol: decodable
     func post<ResponseType>(url: String, data: Encodable, headers: [String : String]) async throws -> ResponseType where ResponseType : Decodable {
         return try await httpMethod(method: "POST", url: url, data: data, headers: headers)
     }
@@ -93,12 +94,14 @@ struct JsonHttp {
     
     private func httpMethod<ResponseType>(method: String, url: String, data: Encodable?, headers: [String : String]) async throws -> ResponseType where ResponseType : Decodable {
         
-        guard let url = URL(string: url) else { throw ApiError.urlError }
+        guard let url = URL(string: url) else { throw ApiError.urlError } // redefine url as a url object, new variable, constructor URL returns an optional
 
         var request = URLRequest(url: url)
-        if let data = data {
+        if let data = data { // optional
+            // encode as json object
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .secondsSince1970
+            // try? --> instead of do catch, if it throws exception then catch it and return nil, shorter try catch
             guard let jsonData = try? encoder.encode(data) else { throw ApiError.encodingError }
             request.httpBody = jsonData
         }
@@ -109,18 +112,22 @@ struct JsonHttp {
             request.addValue(value, forHTTPHeaderField: key)
         }
         
+        // url error if no internet or something
         guard let (data, response) = try? await URLSession.shared.data(for: request) else { throw ApiError.urlSessionError }
+        
+        // specify (cast) the type of response, if cast unsuccessful, return nil
         guard let httpResponse = response as? HTTPURLResponse else { throw ApiError.decodingError }
 
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .secondsSince1970
-        if httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 {
+        // check statusCode if it is a valid respond, then it will return this range
+        if httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 { // responsetype is generic, but compiler knows what it is
             guard let responseObject = try? decoder.decode(ResponseType.self, from: data) else {
                 throw ApiError.decodingError
             }
             return responseObject
         } else {
-            throw (try? decoder.decode(ApiError.self, from: data)) ?? ApiError.decodingError
+            throw (try? decoder.decode(ApiError.self, from: data)) ?? ApiError.decodingError // fall back on error
         }
     }
 }
@@ -128,7 +135,7 @@ struct JsonHttp {
 class Api {
     static let shared = Api()
     
-    var appId: String? = "QSQEo5xSmENL"
+    var appId: String?
     var baseUrl = "https://ecs189e-sms-verification.uc.r.appspot.com"
     
     func sendVerificationToken(e164PhoneNumber: String) async throws -> SendVerificationResponse {
@@ -140,13 +147,17 @@ class Api {
         return try await JsonHttp.shared.post(url: url, data: requestObject, headers: headers)
     }
     
-    func checkVerificationToken(e164PhoneNumber: String, code: String) async throws -> CheckVerificationResponse {
+    func checkVerificationToken(e164PhoneNumber: String, code: String) async throws -> CheckVerificationResponse { // compilers fill in a lot of stuff
+        // to get return type check verification response
 
         let url = baseUrl + "/check_verification_token"
-        let headers = appId.map({ ["x-app-id": $0] }) ?? [:]
+        let headers = appId.map({ ["x-app-id": $0] }) ?? [:] // appId is optional, if we have it, then map it to dictionary string
         let requestObject = CheckVerificationRequest(e164PhoneNumber: e164PhoneNumber, code: code)
 
         return try await JsonHttp.shared.post(url: url, data: requestObject, headers: headers)
+        // return json type with auth token in it ?
+        // let response = api.checkcode
+        
     }
     
     func user(authToken: String) async throws -> UserResponse {

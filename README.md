@@ -1,26 +1,37 @@
-# OTP View HW 2
+# Loading View HW 3
 
 Ann Yip 919530072
 
-## OTP Screen
+## Loading Screen
 
-The OTP Screen consists of instruction texts, 6 text boxes, and resend OTP 
-button. The text boxes are implemented with the invisible textfield method. I 
-converted the String where I store the textfield input into an array of 
-characters, where I then looped through to present on each of the text boxes.
-The textfield is automatically focused and the user has no way to remove the
-focus unless they hit the back button or proceed to the next view. The user
-cannot interact with text boxes as they are just textboxes.
+The loading screen consists of a picture and a progress view icon. When
+called in RootView(), it gets the authtoken from the user default, and 
+proceeds to load the information into userModel.
 
-## Navigation Stack
+## User Model
 
-I have the verification (phone number input) view transition to OTPView via
-navigationDestination. The navigation change is triggered after the program 
-sends OTP text via Api. The user is able to return to the phone number input
-page via the back button on the top of OTPView. The OTPView then switches to
-HomeView also via navigationDestination once the verification code is checked.
-There is no back button on HomeView however, by using the function 
-"navigationBarBackButtonHidden()" to remove it. 
+The userModel includes User, authToken, username, phonenumber, and whether or 
+not an account is created with the phone number. These information are 
+published so that it can be shared with multiple views. Within the userModel,
+the functions initializes the published variables as well as make changes to 
+them, like logging out and changing username.
 
-Phone number is passed via Binding so that OTPView can reference it for 
-resending the OTP as well as verifying the code.
+## Home View
+
+The homeview has two different configuration. If there are accounts, the 
+account names and balances are displayed in a list. If there are no accounts,
+"Please create an account" will be displayed. 
+
+## Settings View
+
+The settings view includes the required modifiable username, displayed phone
+number, and a log out button. The username is changed with the Api, and phone
+number is obtained from the user object. Log out clears the user defaults as
+as well as setting the objects stored in published variables to nil, and 
+redirects the user to verification screen. 
+
+## Root View
+
+The root view consists of 3 different views, loading, new user, and old user.
+New user is directed to verification view first, whereas old user is directed 
+straight to home view.

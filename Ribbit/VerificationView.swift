@@ -16,7 +16,7 @@ func isValidPhoneNumber(value: String) -> Bool {
 }
 
 struct VerificationView: View {
-
+    
     // Formatting phone number
     let phoneNumberKit = PhoneNumberKit()
     // Displaying phone number
@@ -72,12 +72,12 @@ struct VerificationView: View {
                     .font(Font.custom("RetroGaming", size: 10, relativeTo: .largeTitle))
                     .fontWeight(.regular)
                     .foregroundColor(isValidNum ? Color.green : Color.red)
-
+                
                 
                 Spacer()
                 // Bottom button
                 HStack{
-    
+                    
                     Spacer()
                     Button {
                         // Actions when clicked
@@ -124,7 +124,7 @@ struct VerificationView: View {
                     }
                 }
             }
-                
+            
         }
         .onTapGesture {
             isTyping = false

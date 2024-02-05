@@ -12,9 +12,10 @@ import SwiftUI
 struct RibbitApp: App {
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                VerificationView()
-            }
+            RootView()
         }
+    }
+    init() {
+        Api.shared.appId = "QSQEo5xSmENL"
     }
 }

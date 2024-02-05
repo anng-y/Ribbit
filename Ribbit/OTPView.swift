@@ -11,6 +11,8 @@ struct OTPView: View {
     @Binding var phoneNumber: String
     // Focus is always on
     @FocusState private var focus: Bool
+    // EnvironmentObject for user model
+    @EnvironmentObject var userModel: UserModel
     
     // Container for the pin
     @State var pin: String = ""
@@ -18,7 +20,8 @@ struct OTPView: View {
     @State var correctPin: Bool = true
     // Allows the view to move on once OTP is verified
     @State var navigateToHome: Bool = false
-
+    
+    
     var body: some View {
         VStack {
             Spacer()
@@ -69,8 +72,10 @@ struct OTPView: View {
                     if(pin.count == 6) {
                         // Verify OTP code
                         Task {
-                            do {
-                                let _ = try await Api.shared.checkVerificationToken(e164PhoneNumber: phoneNumber, code: pin)
+                            @MainActor in
+                            do {// save response
+                                let authResponse = try await Api.shared.checkVerificationToken(e164PhoneNumber: phoneNumber, code: pin)
+                                await userModel.initialize(authToken: authResponse.authToken)
                                 navigateToHome = true
                             }
                             catch {
@@ -81,26 +86,26 @@ struct OTPView: View {
                     
                 }
             HStack {
-                        Text("Don't see it?")
-                            .font(Font.custom("RetroGaming", size: 14, relativeTo: .body))
-                        Button {
-                            // Resend OTP
-                            Task {
-                                do {
-                                    let _ = try await Api.shared.sendVerificationToken(e164PhoneNumber: phoneNumber)
-                                }
-                                catch let apiError as ApiError {
-                                    print (apiError.message)
-                                }
-                            }
-                        } label: {
-                            Text("Resend OTP")
-                                .underline()
-                                .font(Font.custom("RetroGaming", size: 14, relativeTo: .body))
+                Text("Don't see it?")
+                    .font(Font.custom("RetroGaming", size: 14, relativeTo: .body))
+                Button {
+                    // Resend OTP
+                    Task {
+                        do {
+                            let _ = try await Api.shared.sendVerificationToken(e164PhoneNumber: phoneNumber)
+                        }
+                        catch let apiError as ApiError {
+                            print (apiError.message)
                         }
                     }
-                    .padding()
-                    Spacer()
+                } label: {
+                    Text("Resend OTP")
+                        .underline()
+                        .font(Font.custom("RetroGaming", size: 14, relativeTo: .body))
+                }
+            }
+            .padding()
+            Spacer()
         }.onAppear{
             // Always focused
             self.focus = true
@@ -115,4 +120,5 @@ struct OTPView: View {
 
 #Preview {
     OTPView(phoneNumber: .constant("+15001234567"))
+        .environmentObject(UserModel())
 }
