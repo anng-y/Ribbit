@@ -22,6 +22,7 @@ struct RootView: View {
             switch rootViewType {
             case .loadingView:
                 LoadingView()
+                // checks authtoken
                     .onAppear {
                         Task {
                             @MainActor in

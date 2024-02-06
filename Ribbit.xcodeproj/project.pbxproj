@@ -26,6 +26,7 @@
 		07A59E132B688F7A00C572A4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A59E122B688F7A00C572A4 /* SettingsView.swift */; };
 		07A59E152B6979E300C572A4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A59E142B6979E300C572A4 /* UserModel.swift */; };
 		07A59E192B69A67900C572A4 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A59E182B69A67800C572A4 /* LoadingView.swift */; };
+		07A59E1B2B72FB1300C572A4 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A59E1A2B72FB1300C572A4 /* AccountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		07A59E122B688F7A00C572A4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		07A59E142B6979E300C572A4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		07A59E182B69A67800C572A4 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		07A59E1A2B72FB1300C572A4 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				0792E3CC2B5B7C9F00E97A6D /* RibbitApp.swift */,
 				07A59E0C2B6310AC00C572A4 /* Launch Screen.storyboard */,
 				07A59E0A2B630ECA00C572A4 /* HomeView.swift */,
+				07A59E1A2B72FB1300C572A4 /* AccountView.swift */,
 				07A59E082B6308D500C572A4 /* RootView.swift */,
 				07A59E142B6979E300C572A4 /* UserModel.swift */,
 				07A59E182B69A67800C572A4 /* LoadingView.swift */,
@@ -314,6 +317,7 @@
 				07A59E002B60E1E500C572A4 /* OTPView.swift in Sources */,
 				0792E3CD2B5B7C9F00E97A6D /* RibbitApp.swift in Sources */,
 				07A59E152B6979E300C572A4 /* UserModel.swift in Sources */,
+				07A59E1B2B72FB1300C572A4 /* AccountView.swift in Sources */,
 				07A59E0F2B6327CB00C572A4 /* Api (4).swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
