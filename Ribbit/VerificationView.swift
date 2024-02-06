@@ -16,12 +16,11 @@ func isValidPhoneNumber(value: String) -> Bool {
 }
 
 struct VerificationView: View {
-
+    
     // Formatting phone number
     let phoneNumberKit = PhoneNumberKit()
     // Displaying phone number
     @State private var phoneNumber: String = ""
-    // Storing phone number
     @State private var phoneNumberContainer: String = ""
     // CountryCode: default = +1
     @State private var countryCode = "+1"
@@ -31,10 +30,11 @@ struct VerificationView: View {
     @State private var isValidNum = false
     // To print message
     @State private var message = ""
+    // Navigate to OTP Screen
+    @State private var navigateToOTP = false
     
     var body: some View {
         ZStack {
-            
             // Manage tap gesture
             Rectangle()
                 .fill(Color("bgColor"))
@@ -43,10 +43,7 @@ struct VerificationView: View {
                 Spacer()
                 // Title
                 Text("Verify your phone number")
-                    //.font(.largeTitle)
                     .font(Font.custom("RetroGaming", size: 30, relativeTo: .largeTitle))
-                //Text("For verification purposes.")
-                    .font(.subheadline)
                 // Phone number text field
                 HStack() {
                     // Country code button, to be implemented later
@@ -75,12 +72,12 @@ struct VerificationView: View {
                     .font(Font.custom("RetroGaming", size: 10, relativeTo: .largeTitle))
                     .fontWeight(.regular)
                     .foregroundColor(isValidNum ? Color.green : Color.red)
-
+                
                 
                 Spacer()
                 // Bottom button
                 HStack{
-    
+                    
                     Spacer()
                     Button {
                         // Actions when clicked
@@ -88,7 +85,6 @@ struct VerificationView: View {
                         // Calls the function for checking if phone number
                         isValidNum = isValidPhoneNumber(value: phoneNumber)
                         if isValidNum {
-                            message = "We've sent your OPT code to \(phoneNumber)"
                             // parse phoneNumber
                             do {
                                 let parsed = try phoneNumberKit.parse("+1" + phoneNumber)
@@ -98,7 +94,16 @@ struct VerificationView: View {
                             catch {
                                 print("Parse error")
                             }
-                            
+                            message = "We've sent your OPT code to \(phoneNumber)"
+                            Task {
+                                do {
+                                    let _ = try await Api.shared.sendVerificationToken(e164PhoneNumber: phoneNumberContainer)
+                                    navigateToOTP = true
+                                }
+                                catch let apiError as ApiError {
+                                    print (apiError.message)
+                                }
+                            }
                         } else {
                             // phone number is too short
                             if phoneNumber.count < 14 {
@@ -119,9 +124,13 @@ struct VerificationView: View {
                     }
                 }
             }
-                
-        }.onTapGesture {
+            
+        }
+        .onTapGesture {
             isTyping = false
+        }
+        .navigationDestination(isPresented: $navigateToOTP) {
+            OTPView(phoneNumber: $phoneNumberContainer)
         }
     }
 }
