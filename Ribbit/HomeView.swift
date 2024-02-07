@@ -13,8 +13,6 @@ struct HomeView: View {
         VStack {
             VStack {
                 HStack {
-                    // greetings text, create an account if no accounts exist
-                    //Text(userModel.accountExist ? "Welcome back \(userModel.username)" : "Please create an account.")
                     Text("Welcome back")
                         .font(Font.custom("RetroGaming", size: 25, relativeTo: .title))
                         .multilineTextAlignment(.leading)
@@ -30,15 +28,15 @@ struct HomeView: View {
                     if let accounts = userModel.user?.accounts {
                         List {
                             // shows each of the accounts information in a list
-                            ForEach(accounts, id: \.self) { account in
-                                HStack {
-                                    NavigationLink {
-                                        
-                                    }label: {
-                                        Text(account.name)
+                            ForEach(accounts, id: \.self) { acct in
+                                NavigationLink(
+                                        destination: AccountView(account: Binding(get: { acct }, set: { newValue in}))
+                                    ) {
+                                    HStack {
+                                        Text(acct.name)
                                             .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
                                         Spacer()
-                                        Text(account.balanceString())
+                                        Text(acct.balanceString())
                                             .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
                                     }
                                 }
