@@ -78,6 +78,20 @@ import SwiftUI
         }
     }
     
+    // Get Total Amount
+    func getTotalAmount() -> Double {
+        var totalAmount = 0.0
+        
+        if let user = self.user {
+            for account in user.accounts {
+                totalAmount = totalAmount + account.balanceInUsd()
+            }
+        }
+        
+        return totalAmount
+    }
+
+    // Get the number of accounts
     func accountNumber() -> Int {
         return user?.accounts.count ?? 0
     }
@@ -103,5 +117,23 @@ import SwiftUI
     //        }
     //    }
     
-    
+    // Create New Account
+    func createAccount(accountName: String) async {
+        // Account name has to be non-empty
+        if (accountName == "") {
+            return
+        }
+        
+        // API request
+        if let authToken = self.authToken {
+            do {
+                let userResponse = try await Api.shared.createAccount(authToken: authToken, name: accountName)
+                self.accountExist = true
+                self.user = userResponse.user
+            }
+            catch {
+                print("Cannot create new account")
+            }
+        }
+    }
 }
