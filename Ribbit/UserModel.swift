@@ -136,4 +136,19 @@ import SwiftUI
             }
         }
     }
+    
+    // Delete Account
+    func deleteAccount(account: Account) async {
+        // API request
+        if let authToken = self.authToken {
+            do {
+                let userResponse = try await Api.shared.deleteAccount(authToken: authToken, account: account)
+                self.user = userResponse.user
+                self.accountExist = accountNumber() > 0 ? true : false
+            }
+            catch {
+                print("Cannot delete the account")
+            }
+        }
+    }
 }
