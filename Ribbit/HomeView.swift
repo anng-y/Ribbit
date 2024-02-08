@@ -50,34 +50,36 @@ struct HomeView: View {
             VStack {
                 // shows a list of accounts if they exist
                 if let accounts = userModel.user?.accounts {
-                    List {
-                        // shows each of the accounts information in a list
-                        ForEach(accounts, id: \.self) { acct in
-                            NavigationLink(
-                                destination: AccountView(account: Binding(get: { acct }, set: { newValue in}))
-                            ) {
-                                HStack {
-                                    Text(acct.name)
-                                        .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
-                                    Spacer()
-                                    Text(acct.balanceString())
-                                        .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
+                    if accounts.count > 0 {
+                        List {
+                            // shows each of the accounts information in a list
+                            ForEach(accounts, id: \.self) { acct in
+                                NavigationLink(
+                                    destination: AccountView(account: Binding(get: { acct }, set: { newValue in}))
+                                ) {
+                                    HStack {
+                                        Text(acct.name)
+                                            .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
+                                        Spacer()
+                                        Text(acct.balanceString())
+                                            .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
+                                    }
                                 }
                             }
+                            // Delete the account
+                            .onDelete(perform: { indexSet in
+                                Task {
+                                    await delete(indexSet)
+                                }
+                            })
                         }
-                        // Delete the account
-                        .onDelete(perform: { indexSet in
-                            Task {
-                                await delete(indexSet)
-                            }
-                        })
+                        .listStyle(.inset)
                     }
-                    .listStyle(.inset)
-                    
-                } else {
                     // Instruction if no accounts exist
-                    Text("Create an account in settings.")
-                        .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
+                    else {
+                        Text("Create an account in settings.")
+                            .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
+                    }
                 }
             }
         }
