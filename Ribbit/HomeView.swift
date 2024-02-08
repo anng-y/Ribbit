@@ -11,6 +11,23 @@ struct HomeView: View {
     @EnvironmentObject var userModel: UserModel
     @State private var totalAmount: Double = 0.0
     
+    // Delete Account from the list
+    func delete(_ offsets: IndexSet) async {
+                
+        let index = offsets[offsets.startIndex]
+        let deletedAccount = userModel.user?.accounts[index]
+        
+        if let deletedAccount = deletedAccount {
+            await userModel.deleteAccount(account: deletedAccount)
+            
+            // Update total amount after deletion
+            totalAmount = userModel.getTotalAmount()
+        }
+        else {
+            print("Failed deleting account")
+        }
+    }
+    
     var body: some View {
         VStack(spacing: 20) {
             VStack {
@@ -32,9 +49,8 @@ struct HomeView: View {
             }
             VStack {
                 // shows a list of accounts if they exist
-                //if userModel.accountExist {
-                if true {
-                    if let accounts = userModel.user?.accounts {
+                if let accounts = userModel.user?.accounts {
+                    if accounts.count > 0 {
                         List {
                             // shows each of the accounts information in a list
                             ForEach(accounts, id: \.self) { acct in
@@ -50,45 +66,22 @@ struct HomeView: View {
                                     }
                                 }
                             }
+                            // Delete the account
+                            .onDelete(perform: { indexSet in
+                                Task {
+                                    await delete(indexSet)
+                                }
+                            })
                         }
                         .listStyle(.inset)
                     }
-                } else {
                     // Instruction if no accounts exist
-                    Text("Create an account in settings.")
-                        .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
+                    else {
+                        Text("Create an account in settings.")
+                            .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
+                    }
                 }
             }
-//            if true {//userModel.accountExist {
-//                HStack {
-//                    // buttons for operations
-//                    Button {
-//                        print("Transfer")
-//                    } label: {
-//                        Text("Transfer")
-//                            .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
-//                            .fontWeight(.regular)
-//                            .foregroundColor(Color("bgColor"))
-//                            .frame(width: 150, height: 50)
-//                            .background(Color("buttonColor"))
-//                            .clipShape(RoundedRectangle(cornerRadius: 15))
-//                            .padding()
-//                    }
-//                    Spacer()
-//                    Button {
-//                        print("Withdraw")
-//                    } label: {
-//                        Text("Withdraw")
-//                            .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
-//                            .fontWeight(.regular)
-//                            .foregroundColor(Color("bgColor"))
-//                            .frame(width: 150, height: 50)
-//                            .background(Color("buttonColor"))
-//                            .clipShape(RoundedRectangle(cornerRadius: 15))
-//                            .padding()
-//                    }
-//                }
-//            }
         }
         .padding()
         .navigationBarTitleDisplayMode(.inline)
