@@ -11,7 +11,7 @@ struct CreateAccountView: View {
     @EnvironmentObject var userModel: UserModel
     @State private var accountName: String = ""
     @State private var showErrorMessage: Bool = false
-    @FocusState private var isTyping: Bool // var for checking whether user tapped outside number textField
+    @FocusState private var isTyping: Bool // var for checking whether user tapped outside number te xtField
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
