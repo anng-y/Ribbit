@@ -22,6 +22,7 @@ struct TransferView: View {
                         Button {
                             Task {
                                 if await userModel.transfer(from: fromAcct, to: acct, amountInCents: amountInCents) {
+                                    // Goes back to home after success, same as dismiss() but better
                                     backToHome = true
                                 } else {
                                     errorMsg = "Invalid amount."

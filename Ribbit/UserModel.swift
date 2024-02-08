@@ -11,7 +11,7 @@ import SwiftUI
     @Published var user: User?
     @Published var authToken: String?
     @Published var username: String
-    @Published var phoneNumber: String
+    @Published var totalAmount: Double
     @Published var accountExist: Bool
     
     init() {
@@ -19,27 +19,8 @@ import SwiftUI
         user = nil
         authToken = nil
         username = ""
-        phoneNumber = "+10123456789"
-        
+        totalAmount = 0.0
         accountExist = false
-    }
-    
-    func initUsername (user: User) {
-        guard let userName = UserDefaults.standard.string(forKey: "username") else {
-            self.username = user.name ?? ""
-            return
-        }
-        self.username = userName
-    }
-    
-    // saves phone number in
-    func initPhoneNumber (user: User) {
-        guard let phoneNumber = UserDefaults.standard.string(forKey: "phonenumber") else {
-            self.phoneNumber = user.e164PhoneNumber
-            UserDefaults.standard.set(self.phoneNumber, forKey: "phoneNumber")
-            return
-        }
-        self.phoneNumber = phoneNumber
     }
     
     // once there is a user object saved, check if account exists
@@ -57,9 +38,9 @@ import SwiftUI
         do {
             let userResponse = try await Api.shared.user(authToken: authToken)
             self.user = userResponse.user
-            self.initUsername(user: userResponse.user)
-            self.initPhoneNumber(user: userResponse.user)
+            self.username = self.user?.name ?? ""
             self.findAccount()
+            self.getTotalAmount()
         } catch {
             print("Cannot get User")
         }
@@ -79,7 +60,7 @@ import SwiftUI
     }
     
     // Get Total Amount
-    func getTotalAmount() -> Double {
+    func getTotalAmount() {
         var totalAmount = 0.0
         
         if let user = self.user {
@@ -88,7 +69,7 @@ import SwiftUI
             }
         }
         
-        return totalAmount
+        return self.totalAmount = totalAmount
     }
 
     // Get the number of accounts
@@ -101,21 +82,10 @@ import SwiftUI
         user = nil
         authToken = nil
         username = ""
-        phoneNumber = ""
         accountExist = false
         
-        
         UserDefaults.standard.removeObject(forKey: "authtoken")
-        UserDefaults.standard.removeObject(forKey: "username")
-        UserDefaults.standard.removeObject(forKey: "phonenumber")
-        
     }
-    
-    //    func setPhoneNumber(phoneNumber: String) {
-    //        if let user = self.user {
-    //            user.e164PhoneNumber = phoneNumber
-    //        }
-    //    }
     
     // Create New Account
     func createAccount(accountName: String) async {
@@ -137,10 +107,13 @@ import SwiftUI
         }
     }
     
+    // Deposit
     func deposit(account: Account, amountInCents: Int) async -> Bool {
         do {
+            // Api request
             let userResponse = try await Api.shared.deposit(authToken: self.authToken ?? "", account: account, amountInCents: amountInCents)
             self.user = userResponse.user
+            getTotalAmount()
             return true
         } catch {
             print("Cannot deposit")
@@ -148,10 +121,13 @@ import SwiftUI
         }
     }
     
+    // Withdraw
     func withdraw(account: Account, amountInCents: Int) async -> Bool {
         do {
+            // Api reequest
             let userResponse = try await Api.shared.withdraw(authToken: self.authToken ?? "", account: account, amountInCents: amountInCents)
             self.user = userResponse.user
+            getTotalAmount()
             return true
         } catch {
             print("Cannot withdraw")
@@ -159,13 +135,18 @@ import SwiftUI
         }
     }
     
+    // Transfer
     func transfer(from: Account, to: Account, amountInCents: Int) async -> Bool {
         do {
+            // Api request
             let userResponse = try await Api.shared.transfer(authToken: self.authToken ?? "", from: from, to: to, amountInCents: amountInCents)
             self.user = userResponse.user
+            getTotalAmount()
+            // if true it will dismiss the screen
             return true
         } catch {
             print("Cannot transfer")
+            // if false it will display error message and not dismiss the screen
             return false
         }
     }
@@ -178,6 +159,7 @@ import SwiftUI
                 let userResponse = try await Api.shared.deleteAccount(authToken: authToken, account: account)
                 self.user = userResponse.user
                 self.accountExist = accountNumber() > 0 ? true : false
+                getTotalAmount()
             }
             catch {
                 print("Cannot delete the account")
