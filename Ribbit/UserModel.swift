@@ -137,6 +137,39 @@ import SwiftUI
         }
     }
     
+    func deposit(account: Account, amountInCents: Int) async -> Bool {
+        do {
+            let userResponse = try await Api.shared.deposit(authToken: self.authToken ?? "", account: account, amountInCents: amountInCents)
+            self.user = userResponse.user
+            return true
+        } catch {
+            print("Cannot deposit")
+            return false
+        }
+    }
+    
+    func withdraw(account: Account, amountInCents: Int) async -> Bool {
+        do {
+            let userResponse = try await Api.shared.withdraw(authToken: self.authToken ?? "", account: account, amountInCents: amountInCents)
+            self.user = userResponse.user
+            return true
+        } catch {
+            print("Cannot withdraw")
+            return false
+        }
+    }
+    
+    func transfer(from: Account, to: Account, amountInCents: Int) async -> Bool {
+        do {
+            let userResponse = try await Api.shared.transfer(authToken: self.authToken ?? "", from: from, to: to, amountInCents: amountInCents)
+            self.user = userResponse.user
+            return true
+        } catch {
+            print("Cannot transfer")
+            return false
+        }
+    }
+    
     // Delete Account
     func deleteAccount(account: Account) async {
         // API request

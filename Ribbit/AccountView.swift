@@ -9,9 +9,11 @@ import SwiftUI
 
 struct AccountView: View {
     @EnvironmentObject var userModel: UserModel
+    @Environment(\.dismiss) var dismiss
     @Binding var account: Account
     @FocusState var isTyping: Bool
-    @State var amount: Decimal?
+    @State var amount: Double?
+    @State var errorMsg: String = ""
     
     var body: some View {
         VStack {
@@ -40,7 +42,13 @@ struct AccountView: View {
             HStack {
                 Button {
                     isTyping = false
-                    print("Deposit")
+                    Task {
+                        if await userModel.deposit(account: account, amountInCents: Int(amount ?? 0) * 100) {
+                            dismiss()
+                        } else {
+                            errorMsg = "Invalid amount."
+                        }
+                    }
                 } label: {
                     Text("Deposit")
                         .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
@@ -53,7 +61,13 @@ struct AccountView: View {
                 }
                 Button {
                     isTyping = false
-                    print("Withdraw")
+                    Task {
+                        if await userModel.withdraw(account: account, amountInCents: Int(amount ?? 0) * 100) {
+                            dismiss()
+                        } else {
+                            errorMsg = "Invalid amount."
+                        }
+                    }
                 } label: {
                     Text("Withdraw")
                         .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
@@ -62,11 +76,10 @@ struct AccountView: View {
                         .frame(width: 120, height: 50)
                         .background(Color("buttonColor"))
                         .clipShape(RoundedRectangle(cornerRadius: 15))
-                    //.padding()
                 }
-                Button {
-                    isTyping = false
-                    print("Transfer")
+                NavigationLink {
+                    TransferView(fromAcct: $account, amountInCents: .constant(Int(amount ?? 0) * 100))
+
                 } label: {
                     Text("Transfer")
                         .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
@@ -78,6 +91,10 @@ struct AccountView: View {
                         .padding(.trailing)
                 }
             }
+            Text(errorMsg)
+                .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
+                .foregroundColor(.red)
+            
         }
     }
 }

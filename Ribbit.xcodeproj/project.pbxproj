@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0726AD3B2B747ABC0013FE5B /* TransferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726AD3A2B747ABC0013FE5B /* TransferView.swift */; };
 		0792E3CD2B5B7C9F00E97A6D /* RibbitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0792E3CC2B5B7C9F00E97A6D /* RibbitApp.swift */; };
 		0792E3CF2B5B7C9F00E97A6D /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0792E3CE2B5B7C9F00E97A6D /* VerificationView.swift */; };
 		0792E3D12B5B7CA100E97A6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0792E3D02B5B7CA100E97A6D /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0726AD3A2B747ABC0013FE5B /* TransferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferView.swift; sourceTree = "<group>"; };
 		0792E3C92B5B7C9F00E97A6D /* Ribbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ribbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0792E3CC2B5B7C9F00E97A6D /* RibbitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitApp.swift; sourceTree = "<group>"; };
 		0792E3CE2B5B7C9F00E97A6D /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				07A59E0A2B630ECA00C572A4 /* HomeView.swift */,
 				F13DC9812B730FEA00C25A95 /* CreateAccountView.swift */,
 				07A59E1A2B72FB1300C572A4 /* AccountView.swift */,
+				0726AD3A2B747ABC0013FE5B /* TransferView.swift */,
 				07A59E082B6308D500C572A4 /* RootView.swift */,
 				07A59E142B6979E300C572A4 /* UserModel.swift */,
 				07A59E182B69A67800C572A4 /* LoadingView.swift */,
@@ -320,6 +323,7 @@
 				F13DC9822B730FEA00C25A95 /* CreateAccountView.swift in Sources */,
 				07A59E002B60E1E500C572A4 /* OTPView.swift in Sources */,
 				0792E3CD2B5B7C9F00E97A6D /* RibbitApp.swift in Sources */,
+				0726AD3B2B747ABC0013FE5B /* TransferView.swift in Sources */,
 				07A59E152B6979E300C572A4 /* UserModel.swift in Sources */,
 				07A59E1B2B72FB1300C572A4 /* AccountView.swift in Sources */,
 				07A59E0F2B6327CB00C572A4 /* Api (4).swift in Sources */,
