@@ -21,7 +21,7 @@ struct SettingsView: View {
                 )
                 .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
                 // Display phone number
-                Text(userModel.phoneNumber)
+                Text(userModel.user?.e164PhoneNumber ?? "")
                     .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
                 // Display # accounts, can switch to a button later
                 Text(userModel.accountExist ? "You have \(userModel.accountNumber()) accounts." : "Create an account.")

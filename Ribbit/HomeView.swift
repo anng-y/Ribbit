@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var userModel: UserModel
-    @State private var totalAmount: Double = 0.0
     
     // Delete Account from the list
     func delete(_ offsets: IndexSet) async {
@@ -19,9 +18,6 @@ struct HomeView: View {
         
         if let deletedAccount = deletedAccount {
             await userModel.deleteAccount(account: deletedAccount)
-            
-            // Update total amount after deletion
-            totalAmount = userModel.getTotalAmount()
         }
         else {
             print("Failed deleting account")
@@ -43,7 +39,7 @@ struct HomeView: View {
                 // Total Amount
                 VStack(spacing: 15) {
                     Text("Total Amount")
-                    Text("$\(totalAmount, specifier: "%.2f")")
+                    Text("$\(userModel.totalAmount, specifier: "%.2f")")
                 }
                 .font(Font.custom("RetroGaming", size: 35, relativeTo: .subheadline))
             }
@@ -107,12 +103,6 @@ struct HomeView: View {
                 }
             }
         }
-        .onAppear(
-            // Set the total amount as soon as view renders
-            perform: {
-                totalAmount = userModel.getTotalAmount()
-            }
-        )
     }
 }
 

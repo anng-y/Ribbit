@@ -40,10 +40,13 @@ struct AccountView: View {
                 .focused($isTyping)
             
             HStack {
+                // Deposit button
                 Button {
                     isTyping = false
+                    // Api request
                     Task {
                         if await userModel.deposit(account: account, amountInCents: Int(amount ?? 0) * 100) {
+                            // dismiss when success
                             dismiss()
                         } else {
                             errorMsg = "Invalid amount."
@@ -59,10 +62,13 @@ struct AccountView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .padding(.leading)
                 }
+                // Withdraw button
                 Button {
                     isTyping = false
                     Task {
+                        // Api request
                         if await userModel.withdraw(account: account, amountInCents: Int(amount ?? 0) * 100) {
+                            // dismiss when success
                             dismiss()
                         } else {
                             errorMsg = "Invalid amount."
@@ -77,9 +83,10 @@ struct AccountView: View {
                         .background(Color("buttonColor"))
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                 }
+                // Transfer
+                // Goes to the page with a list of accounts
                 NavigationLink {
                     TransferView(fromAcct: $account, amountInCents: .constant(Int(amount ?? 0) * 100))
-
                 } label: {
                     Text("Transfer")
                         .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
