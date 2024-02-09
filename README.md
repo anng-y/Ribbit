@@ -1,37 +1,21 @@
-# Loading View HW 3
+# Account Modifying HW 4
 
 Ann Yip 919530072
+Yeongjin Lee 916567611
+Jinho Yon 917507227
 
-## Loading Screen
+## Creating/Deleting Account
 
-The loading screen consists of a picture and a progress view icon. When
-called in RootView(), it gets the authtoken from the user default, and 
-proceeds to load the information into userModel.
 
-## User Model
 
-The userModel includes User, authToken, username, phonenumber, and whether or 
-not an account is created with the phone number. These information are 
-published so that it can be shared with multiple views. Within the userModel,
-the functions initializes the published variables as well as make changes to 
-them, like logging out and changing username.
+## Total Amount
 
-## Home View
 
-The homeview has two different configuration. If there are accounts, the 
-account names and balances are displayed in a list. If there are no accounts,
-"Please create an account" will be displayed. 
 
-## Settings View
+## Deposit, Withdraw, Transfer
 
-The settings view includes the required modifiable username, displayed phone
-number, and a log out button. The username is changed with the Api, and phone
-number is obtained from the user object. Log out clears the user defaults as
-as well as setting the objects stored in published variables to nil, and 
-redirects the user to verification screen. 
-
-## Root View
-
-The root view consists of 3 different views, loading, new user, and old user.
-New user is directed to verification view first, whereas old user is directed 
-straight to home view.
+Each of the account displayed in home view directs the user to the page where
+they can deposit, withdraw, or transfer their money. The button then performs
+the action/request in the userModel, then redirects the user once success or
+display error message. The transfer button redirects the user to a list of 
+their other accounts to choose and transfer.

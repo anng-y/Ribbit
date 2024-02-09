@@ -65,7 +65,6 @@
 		0792E3FE2B5B7DD500E97A6D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		07A59DFF2B60E1E500C572A4 /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
 		07A59E012B60E50F00C572A4 /* RetroGaming.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RetroGaming.ttf; sourceTree = "<group>"; };
-		07A59E032B60EA0200C572A4 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		07A59E082B6308D500C572A4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		07A59E0A2B630ECA00C572A4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		07A59E0C2B6310AC00C572A4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -142,7 +141,6 @@
 				0792E3CE2B5B7C9F00E97A6D /* VerificationView.swift */,
 				07A59E0E2B6327CA00C572A4 /* Api (4).swift */,
 				0792E3F62B5B7D1500E97A6D /* LaunchView.swift */,
-				07A59E032B60EA0200C572A4 /* Empty.md */,
 				07A59E012B60E50F00C572A4 /* RetroGaming.ttf */,
 				0792E3D02B5B7CA100E97A6D /* Assets.xcassets */,
 				0792E3D22B5B7CA100E97A6D /* Preview Content */,
