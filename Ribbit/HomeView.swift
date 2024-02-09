@@ -73,7 +73,7 @@ struct HomeView: View {
                     }
                     // Instruction if no accounts exist
                     else {
-                        Text("Create an account in settings.")
+                        Text("Create an account.")
                             .font(Font.custom("RetroGaming", size: 15, relativeTo: .body))
                     }
                 }
